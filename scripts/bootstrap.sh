@@ -9,20 +9,16 @@
 # Make sure docker buid fails on any error
 set -e
 
-# Check that both file URL and SHA1 hash have been provided
+# Check that both iris version and SHA1 hash have been provided
 if [ "$#" -ne 2 ]; then
-	echo "Usage: $0 <url> <sha1>"
-	exit 1
+  echo "Usage: $0 <iris binary name> <sha1>"
+  exit 1
 fi
-url=$1
-name=`basename $url`
+name=$1
 sha1=$2
 
-# Download the file and verify its hash
-echo "Downloading $name from $url..."    
-wget $url
+# Retrieve the requested version of the Iris node, verify and enable
+/scripts/fetch.sh http://iris.karalabe.com/downloads/$name $sha1
 
-echo "Verifying sha1 checksum ($sha1)..."
-echo "$sha1  $name" > $name.sum
-sha1sum -c $name.sum
-rm $name.sum
+mv $name $IRIS_BIN
+chmod +x $IRIS_BIN

@@ -11,10 +11,10 @@ set -e
 
 # Check that both iris version and SHA1 hash have been provided
 if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 <iris binary name> <sha1>"
+  echo "Usage: $0 <iris version> <sha1>"
   exit 1
 fi
-name=$1
+name=iris-$1-linux-amd64
 sha1=$2
 
 # Retrieve the requested version of the Iris node, verify and enable

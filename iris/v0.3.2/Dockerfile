@@ -10,4 +10,4 @@ FROM iris/base
 MAINTAINER Péter Szilágyi <peterke@gmail.com>
 
 # Bootstrap the versioned Iris container
-RUN /scripts/bootstrap.sh iris-v0.3.2-linux-amd64 111c781c26b1df04e9366009cce773b415afe1ed
+RUN /scripts/bootstrap.sh v0.3.2 111c781c26b1df04e9366009cce773b415afe1ed

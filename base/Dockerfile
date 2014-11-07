@@ -16,11 +16,12 @@ RUN \
   apt-get install -y ca-certificates wget
 
 # Add helper scripts and define some default config values
-ADD scripts   /scripts
-ENV IRIS_BIN  /iris/bin/iris
+ADD scripts  /scripts
+ENV IRIS_BIN /iris/bin/iris
+ENV IRIS_RSA /iris.rsa
 RUN \
   chmod -R +x /scripts && \
   mkdir -p `dirname $IRIS_BIN`
 
-# Set Iris as the entry point (how to use the above env var?)
-ENTRYPOINT ["/iris/bin/iris"]
+# Set Iris as the entry point
+ENTRYPOINT ["/scripts/iris.sh"]
